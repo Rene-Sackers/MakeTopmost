@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace MakeTopmost
+namespace MakeTopmost.Models
 {
 	public class OpenWindowInfo
 	{

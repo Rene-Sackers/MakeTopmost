@@ -1,4 +1,6 @@
 ﻿using CommandLine;
+using MakeTopmost.Models;
+using MakeTopmost.Services;
 
 namespace MakeTopmost
 {

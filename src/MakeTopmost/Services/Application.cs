@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
+using MakeTopmost.Extensions;
+using MakeTopmost.Models;
 
-namespace MakeTopmost
+namespace MakeTopmost.Services
 {
 	public class Application
 	{

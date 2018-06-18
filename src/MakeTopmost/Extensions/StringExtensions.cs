@@ -1,4 +1,4 @@
-﻿namespace MakeTopmost
+﻿namespace MakeTopmost.Extensions
 {
 	public static class StringExtensions
 	{

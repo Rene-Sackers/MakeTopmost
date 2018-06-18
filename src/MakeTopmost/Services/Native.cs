@@ -4,8 +4,9 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Text;
+using MakeTopmost.Models;
 
-namespace MakeTopmost
+namespace MakeTopmost.Services
 {
 	[SuppressMessage("ReSharper", "InconsistentNaming")]
 	public static class Native

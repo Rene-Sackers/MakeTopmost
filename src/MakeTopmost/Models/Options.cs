@@ -1,7 +1,7 @@
 ﻿using System;
 using CommandLine;
 
-namespace MakeTopmost
+namespace MakeTopmost.Models
 {
 	public class Options
 	{
