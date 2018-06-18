@@ -60,9 +60,11 @@
   <ItemGroup>
     <Compile Include="Application.cs" />
     <Compile Include="Native.cs" />
+    <Compile Include="OpenWindowInfo.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

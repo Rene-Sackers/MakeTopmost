@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace MakeTopmost
@@ -17,30 +16,31 @@ namespace MakeTopmost
 			QueryForTargetWindow();
 		}
 
-		private void QueryForTargetWindow()
+		private static void QueryForTargetWindow()
 		{
-			Console.WriteLine("Choose a process:");
+			Console.WriteLine("Choose a window:");
 
-			var windows = Native.GetOpenedWindows();
+			var windows = Native.GetOpenedWindows()
+				.Where(w => !string.IsNullOrWhiteSpace(w.Title))
+				.OrderBy(w => w.Title)
+				.ToArray();
 
-			var windowHandles = new Dictionary<int, IntPtr>();
-			var handleId = 0;
-
-			foreach (var window in windows.OrderBy(w => w.Title))
+			for (var i = 0; i < windows.Length; i++)
 			{
-				windowHandles.Add(++handleId, window.Handle);
-				Console.WriteLine($"{handleId}\t-\t{window.Title}");
+				var windowInfo = windows[i];
+				var processName = (windowInfo.Process.ProcessName + ".exe").TakeMaxLength(13);
+				var windowTitle = windowInfo.Title.TakeMaxLength(50);
+
+				Console.WriteLine($"[{i}]\t- {processName}\t\t-\t{windowTitle}");
 			}
 
 			Console.Write("ID: ");
 
 			int chosenHandleId;
-			while (!int.TryParse(Console.ReadLine(), out chosenHandleId) || !windowHandles.ContainsKey(chosenHandleId))
+			while (!int.TryParse(Console.ReadLine(), out chosenHandleId) || chosenHandleId < 0 || chosenHandleId >= windows.Length)
 				continue;
 
-			var chosenWindowHandle = windowHandles[chosenHandleId];
-
-			var targetWindowTitle = Native.GetWindowTitle(chosenWindowHandle);
+			var chosenWindowHandle = windows[chosenHandleId].Handle;
 
 			ToggleWindowTopmost(chosenWindowHandle);
 		}
